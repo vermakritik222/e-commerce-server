@@ -1,0 +1,41 @@
+POST http://localhost:80/api/v1/signup
+Content-Type: application/json
+
+{
+    "name":"user2",
+    "email":"user2@example.com",
+    "password":"123456",
+    "passwordConformation":"123456",
+    "dateOfBirth":"2-22-2002"
+}
+
+###
+POST http://localhost:80/api/v1/login
+Content-Type: application/json
+
+{
+    "email":"user2@example.com",
+    "password":"123456"  
+}
+
+###
+POST http://localhost:80/api/v1/sendotp
+Content-Type: application/json
+
+{
+    "userId":"64df19306cf80c9fa8f39213"
+}
+
+###
+POST http://localhost:80/api/v1/verify
+Content-Type: application/json
+
+{
+    "otp":"7567",
+    "hash": "21873a9fe7e7a0e35275999f4a4d0e12f87d8b712695795223792b7300161dcd.1692350896530",
+    "email": "user2@example.com"
+}
+
+###
+GET http://localhost:8080/api/v1/logout
+Content-Type: application/json

@@ -8,9 +8,11 @@ const universalMiddleware = require("./middleware/universal.middleware")
 
 // Routes
 const healthCheckRoutes = require('./routes/healthCheck.routes');
+const authRouter = require('./routes/auth.routes');
 
 // Global Error Handler
 const globalErrorHandler = require("./controllers/error.controller")
+const AppError = require("./utils/appError")
 
 const app = express();
 
@@ -35,9 +37,11 @@ app.use(
 app.use(universalMiddleware.sendTimeStamp);
 
 // Routes
+app.use('/api/v1', authRouter);
 
 // health check
 app.use('/health-check', healthCheckRoutes);
+
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
