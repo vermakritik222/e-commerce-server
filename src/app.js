@@ -9,6 +9,7 @@ const universalMiddleware = require("./middleware/universal.middleware")
 // Routes
 const healthCheckRoutes = require('./routes/healthCheck.routes');
 const authRouter = require('./routes/auth.routes');
+const addressRoutes = require('./routes/address.routes');
 
 // Global Error Handler
 const globalErrorHandler = require("./controllers/error.controller")
@@ -38,6 +39,7 @@ app.use(universalMiddleware.sendTimeStamp);
 
 // Routes
 app.use('/api/v1', authRouter);
+app.use('/api/v1', addressRoutes);
 
 // health check
 app.use('/health-check', healthCheckRoutes);

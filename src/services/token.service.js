@@ -6,7 +6,7 @@ const accessTokenSecret = process.env.JWT_ACCESS_TOKEN_SECRET;
 
 exports.generateTokens = (payload) => {
     const accessToken = jwt.sign(payload, accessTokenSecret, {
-        expiresIn: '1m',
+        expiresIn: '160m',
     });
     const refreshToken = jwt.sign(payload, refreshTokenSecret, {
         expiresIn: '1y',

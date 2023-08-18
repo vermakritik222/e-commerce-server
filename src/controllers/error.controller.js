@@ -1,10 +1,12 @@
 const AppError = require('../utils/appError.js');
 
-const handelJsonWebTokenError = (err) =>
+const handelJsonWebTokenError = (err) => {
     new AppError('Invalid Token pleas login again', 401);
+};
 
-const handelTokenExpiredError = () =>
+const handelTokenExpiredError = () => {
     new AppError('your token has expired! pleas log in again.', 401);
+};
 
 const handelCastErrorDB = (err) => {
     const msg = `Invalided ${err.path}:${err.value}`;
