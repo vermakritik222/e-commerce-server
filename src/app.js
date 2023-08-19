@@ -14,6 +14,7 @@ const addressRoutes = require('./routes/address.routes');
 const productRoutes = require('./routes/product.routes');
 const cartRoutes = require('./routes/cart.routes');
 const orderRoutes = require('./routes/order.routes');
+const userRoutes = require('./routes/user.routes');
 
 // Global Error Handler
 const globalErrorHandler = require('./controllers/error.controller');
@@ -50,6 +51,7 @@ app.use('/api/v1', productRoutes);
 
 app.use(authorizeMiddleware.protect);
 
+app.use('/api/v1/me', userRoutes);
 app.use('/api/v1/cart', cartRoutes);
 app.use('/api/v1/order', orderRoutes);
 

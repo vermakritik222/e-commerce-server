@@ -1,21 +1,6 @@
 const mongoose = require('mongoose');
 
-const orderItemSchema = new mongoose.Schema({
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-    },
-    quantity: {
-        type: Number,
-        required: true,
-        min: 1,
-    },
-    price: {
-        type: Number,
-        required: true,
-    },
-});
+// const orderItemSchema = new mongoose.Schema();
 
 const orderSchema = new mongoose.Schema(
     {
@@ -23,7 +8,24 @@ const orderSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
         },
-        items: [orderItemSchema],
+        items: [
+            {
+                product: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Product',
+                    required: true,
+                },
+                quantity: {
+                    type: Number,
+                    required: true,
+                    min: 1,
+                },
+                price: {
+                    type: Number,
+                    required: true,
+                },
+            },
+        ],
         totalAmount: {
             type: Number,
             required: true,
@@ -47,8 +49,6 @@ const orderSchema = new mongoose.Schema(
     }
 );
 
-const Order = mongoose.model('Order', orderSchema);
-
 orderSchema.pre(/^find/, function (next) {
     this.populate({
         path: 'shippingAddress',
@@ -57,12 +57,14 @@ orderSchema.pre(/^find/, function (next) {
     next();
 });
 
-orderSchema.pre(/^findById/, function (next) {
+orderSchema.pre(/^findOne/, function (next) {
     this.populate({
-        path: 'item',
+        path: 'items.product',
         select: 'title description price discountedPrice category stock images',
     });
     next();
 });
+
+const Order = mongoose.model('Order', orderSchema);
 
 module.exports = Order;

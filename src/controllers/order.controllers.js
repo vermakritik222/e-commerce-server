@@ -39,39 +39,57 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getAddress = catchAsync(async (req, res) => {
-    const address = await handlerFactory.findMany(Address, {
-        userId: req.user._id,
+exports.getOrder = catchAsync(async (req, res, next) => {
+    const orders = await handlerFactory.getAll(Order, {
+        user: req.user._id,
     });
 
     res.status(200).json({
         status: 'success',
-        length: address.length,
-        address,
+        length: orders.length,
+        orders,
     });
 });
 
-exports.updateAddress = catchAsync(async (req, res) => {
-    const address = await handlerFactory.updateOne(
-        Address,
-        { _id: req.body.id },
-        req.body
-    );
+exports.updateOrder = catchAsync(async (req, res, next) => {
+    const { id, shippingAddress } = req.body;
+
+    if (!shippingAddress) {
+        return next(new AppError('all fields are required', 400));
+    }
+
+    const order = await handlerFactory.findById(Order, id);
+    if (!order) {
+        return next(new AppError('Order not found', 404));
+    }
+
+    if (order.status !== 'pending') {
+        return next(
+            new AppError(
+                'Order status is not pending. Update not allowed.',
+                400
+            )
+        );
+    }
+
+    order.shippingAddress = shippingAddress
+    
+    await order.save();
 
     res.status(202).json({
         status: 'success',
-        length: address.length,
-        address,
+        length: order.length,
+        order,
     });
 });
 
-exports.deleteAddress = catchAsync(async (req, res) => {
+exports.getOrderDetails = catchAsync(async (req, res) => {
     const { id } = req.params;
-    const address = await handlerFactory.deleteOne(Address, id);
+    const order = await handlerFactory.findById(Order, id);
 
     res.status(201).json({
         status: 'success',
-        address,
-        id,
+        params:id,
+        order,
     });
 });

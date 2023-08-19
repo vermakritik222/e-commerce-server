@@ -6,12 +6,10 @@ const router = express.Router();
 router
     .route('/')
     .post(orderControllers.placeOrder)
-    // .get(orderControllers.getActiveOrder)
-    // .patch(orderControllers.updateOrder);
+    .get(orderControllers.getOrder)
+    .patch(orderControllers.updateOrder);
 
-// router.route('/:id').get(orderControllers.getOrderDetails);
-
-// router.route('/history').get(orderControllers.getOrderHistory);
+router.route('/:id').get(orderControllers.getOrderDetails);
 
 // router
 //     .route('/archive/:id')
