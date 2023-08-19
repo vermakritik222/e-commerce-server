@@ -1,5 +1,4 @@
 const catchAsync = require('../utils/chtchasync');
-const AppError = require('../utils/appError');
 const Address = require('../models/address.model');
 const handlerFactory = require('../services/handlerFactory.service');
 

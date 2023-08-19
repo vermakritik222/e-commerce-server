@@ -1,8 +1,8 @@
-const tokenService = require("../services/token.service")
-const catchAsync = require("../utils/chtchasync")
-const handlerFactory = require("../services/handlerFactory.service")
-const User = require("../models/user.model")
-const AppError = require("../utils/appError") 
+const tokenService = require('../services/token.service');
+const catchAsync = require('../utils/chtchasync');
+const handlerFactory = require('../services/handlerFactory.service');
+const User = require('../models/user.model');
+const AppError = require('../utils/appError');
 
 exports.protect = catchAsync(async (req, res, next) => {
     // 1) getting token and check of its there
@@ -15,14 +15,12 @@ exports.protect = catchAsync(async (req, res, next) => {
             )
         );
     }
-    console.log(accessToken);
-
+    
     // 2) verification of token
     const decode = await tokenService.verifyAccessToken(accessToken);
 
-    console.log(decode);
     // 3) check if user still exists
-    const freshUser = await handlerFactory.findById(User,decode._id)
+    const freshUser = await handlerFactory.findById(User, decode._id);
     if (!freshUser) {
         return next(
             new AppError(
@@ -41,8 +39,8 @@ exports.protect = catchAsync(async (req, res, next) => {
             )
         );
     }
+
     // Grant access to protected rout
     req.user = freshUser;
     next();
 });
-

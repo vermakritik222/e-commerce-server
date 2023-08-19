@@ -1,0 +1,327 @@
+[
+    {
+        "title": "Smartphone XYZ",
+        "description": "Powerful smartphone with advanced features.",
+        "subDescription": "Includes high-resolution camera and fast processor.",
+        "price": 499.99,
+        "discountedPrice": 449.99,
+        "category": "Electronics",
+        "brand": "BrandTech",
+        "stock": 150,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Smartphone XYZ Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Smartphone XYZ Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [{ "name": "Color", "value": "Black" }],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Laptop ABC",
+        "description": "High-performance laptop for work and entertainment.",
+        "subDescription": "Large screen and long battery life.",
+        "price": 899.99,
+        "category": "Electronics",
+        "brand": "TechGenius",
+        "stock": 75,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Laptop ABC Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Laptop ABC Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [{ "name": "Color", "value": "Silver" }],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Men's Casual Shirt",
+        "description": "Comfortable and stylish shirt for casual occasions.",
+        "price": 29.99,
+        "category": "Clothing",
+        "brand": "FashionStyle",
+        "stock": 120,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Men's Casual Shirt Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Men's Casual Shirt Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [
+            { "name": "Color", "value": "Blue" },
+            { "name": "Size", "value": "Medium" }
+        ],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Women's Running Shoes",
+        "description": "Durable and comfortable shoes for running and sports.",
+        "price": 79.99,
+        "discountedPrice": 69.99,
+        "category": "Footwear",
+        "brand": "SportWave",
+        "stock": 200,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Women's Running Shoes Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Women's Running Shoes Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [
+            { "name": "Color", "value": "Pink" },
+            { "name": "Size", "value": "US 8" }
+        ],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Wireless Earbuds",
+        "description": "High-quality wireless earbuds for music and calls.",
+        "price": 89.99,
+        "category": "Electronics",
+        "brand": "AudioTech",
+        "stock": 100,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Wireless Earbuds Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Wireless Earbuds Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Men's Leather Wallet",
+        "description": "Classic leather wallet with multiple card slots.",
+        "price": 39.99,
+        "category": "Accessories",
+        "brand": "LuxuryLeather",
+        "stock": 50,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Men's Leather Wallet Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Men's Leather Wallet Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [{ "name": "Color", "value": "Brown" }],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Fitness Tracker Watch",
+        "description": "Monitor your health and track your workouts.",
+        "price": 69.99,
+        "category": "Fitness",
+        "brand": "ActiveLife",
+        "stock": 80,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Fitness Tracker Watch Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Fitness Tracker Watch Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [{ "name": "Color", "value": "Black" }],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Home Security Camera",
+        "description": "Keep an eye on your home with this advanced camera.",
+        "price": 129.99,
+        "category": "Home",
+        "brand": "SecureHome",
+        "stock": 30,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Home Security Camera Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Home Security Camera Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Cookware Set",
+        "description": "High-quality cookware set for your kitchen.",
+        "price": 199.99,
+        "category": "Kitchen",
+        "brand": "CulinaryDelight",
+        "stock": 25,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Cookware Set Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Cookware Set Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Classic Book Collection",
+        "description": "Timeless classics for book enthusiasts.",
+        "price": 59.99,
+        "category": "Books",
+        "brand": "LiteraryTreasures",
+        "stock": 40,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Classic Book Collection Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Classic Book Collection Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Portable Bluetooth Speaker",
+        "description": "Enjoy your favorite music anywhere with this speaker.",
+        "price": 49.99,
+        "category": "Electronics",
+        "brand": "AudioSound",
+        "stock": 60,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Portable Bluetooth Speaker Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Portable Bluetooth Speaker Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Women's Sunglasses",
+        "description": "Stylish sunglasses to complement your look.",
+        "price": 29.99,
+        "category": "Accessories",
+        "brand": "FashionGlam",
+        "stock": 90,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Women's Sunglasses Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Women's Sunglasses Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Gaming Console",
+        "description": "Immerse yourself in the world of gaming.",
+        "price": 349.99,
+        "category": "Gaming",
+        "brand": "GameMaster",
+        "stock": 15,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Gaming Console Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Gaming Console Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Men's Dress Shoes",
+        "description": "Elegant dress shoes for formal occasions.",
+        "price": 89.99,
+        "category": "Footwear",
+        "brand": "ElegantStyles",
+        "stock": 50,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Men's Dress Shoes Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Men's Dress Shoes Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    {
+        "title": "Wireless Charging Pad",
+        "description": "Convenient wireless charging for your devices.",
+        "price": 19.99,
+        "category": "Electronics",
+        "brand": "TechCharge",
+        "stock": 120,
+        "images": [
+            {
+                "url": "http://localhost:8080/demo_image_1.jpg",
+                "altText": "Wireless Charging Pad Image 1"
+            },
+            {
+                "url": "http://localhost:8080/demo_image_2.jpg",
+                "altText": "Wireless Charging Pad Image 2"
+            }
+        ],
+        "variations": [],
+        "specifications": [],
+        "size": ["S", "M", "L", "XL", "XXL", "XXXL"]
+    }
+]

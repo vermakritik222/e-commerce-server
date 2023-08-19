@@ -1,3 +1,16 @@
+const APIFeatures = require('../utils/apiFeatures');
+
+exports.getAll = async (Model, query) => {
+    const features = new APIFeatures(Model.find(), query)
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
+
+    const doc = await features.query;
+    return doc;
+};
+
 exports.find = async (Model, filters) => {
     const doc = await Model.findOne(filters);
     return doc;
@@ -24,6 +37,6 @@ exports.findById = async (Model, id) => {
 };
 
 exports.deleteOne = async (Model, id) => {
-    const doc = await Model.deleteOne({ _id: id });
+    const doc = await Model.findByIdAndDelete(id);
     return doc;
 };
