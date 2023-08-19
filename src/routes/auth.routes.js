@@ -15,6 +15,8 @@ router.patch('/resetpassword/:token', authController.resetPassword);
 router.use(authorizeMiddleware.protect);
 
 router.get('/logout', authController.logout);
-router.patch('/updatepassword', authController.updatePassword);
+router.patch('/update-email', authController.updateEmailRequest);
+router.get('/:token/email-verify', authController.updateEmailVerify);
+router.patch('/update-password', authController.updatePassword);
 
 module.exports = router;

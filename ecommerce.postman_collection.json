@@ -238,7 +238,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"currentPassword\":\"test1234\",\r\n    \"Password\": \"test1235\",\r\n    \"passwordConformation\":\"test1235\"\r\n}",
+							"raw": "{\r\n    \"currentPassword\":\"test1234\",\r\n    \"Password\": \"test12345\",\r\n    \"passwordConformation\":\"test12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -246,7 +246,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:80/api/v1/updatepassword",
+							"raw": "http://localhost:80/api/v1/update-password",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -255,7 +255,58 @@
 							"path": [
 								"api",
 								"v1",
-								"updatepassword"
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Email",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currentPassword\": \"test1234\",\r\n    \"email\": \"user@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/v1/update-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"update-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email Verify (Mail Link)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/v1/2fb3c0895b8fbfe9a254c5c54168efbe4c2361d31986a4f85f71b0ee48fabd1633e99e71ff5601a3d329ecaf59300e09489946c725241492c7dc032787d674bda9df37cd5a934fbf0fd468e7a6222354622ef3db63164ad43d26f4ff1f638195/email-verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"2fb3c0895b8fbfe9a254c5c54168efbe4c2361d31986a4f85f71b0ee48fabd1633e99e71ff5601a3d329ecaf59300e09489946c725241492c7dc032787d674bda9df37cd5a934fbf0fd468e7a6222354622ef3db63164ad43d26f4ff1f638195",
+								"email-verify"
 							]
 						}
 					},
@@ -653,6 +704,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"items\": [\r\n        {\r\n            \"product\": \"64dff9b7c99572f81cc659a7\",\r\n            \"quantity\": 1,\r\n            \"price\": \"500\"\r\n        }\r\n    ],\r\n    \"paymentMethod\":\"not paid\",\r\n    \"shippingAddress\":\"64e09e6317639bc3ce6a5601\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:80/api/v1/order",
 							"protocol": "http",
@@ -668,29 +728,147 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/v1/order?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shipping Address",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"64e0a07d6526deca059a0454\",\r\n    \"shippingAddress\":\"64e0ee66e7f9c74f2207478a\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/v1/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/v1/order/64e0f184b507d4cf9dade7e9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"64e0f184b507d4cf9dade7e9"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "Me",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:80/api/v1/me",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"v1",
-						"me"
-					]
+			"name": "User (me)",
+			"item": [
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/v1/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Me",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"first user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/v1/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"me"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Health Check",

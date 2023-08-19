@@ -34,7 +34,7 @@ exports.updateCartItem = catchAsync(async (req, res, next) => {
     const { quantity } = req.body;
     const { _id } = req.user;
     if (!quantity) {
-        next(new AppError('missing field "quantity"', 400));
+       return next(new AppError('missing field "quantity"', 400));
     }
     const cartItem = await handlerFactory.updateOne(
         Cart,
@@ -52,7 +52,7 @@ exports.deleteCartItem = catchAsync(async (req, res) => {
     const { id } = req.params;
 
     if (!id) {
-        next(new AppError('missing field cart item "id"', 400));
+        return next(new AppError('missing field cart item "id"', 400));
     }
     const cartItem = await handlerFactory.deleteOne(Cart, id);
 

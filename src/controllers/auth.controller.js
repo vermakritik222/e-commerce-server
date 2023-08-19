@@ -5,7 +5,11 @@ const tokenService = require('../services/token.service');
 const handlerFactory = require('../services/handlerFactory.service');
 const otpService = require('../services/otp.service');
 const sendEmail = require('../services/email.service');
-const { sha256 } = require('../services/encryption.service');
+const {
+    sha256,
+    encrypt256cbc,
+    decrypt256cbc,
+} = require('../services/encryption.service');
 
 exports.signup = catchAsync(async (req, res, next) => {
     const {
@@ -29,7 +33,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     });
 
     if (!email) {
-        next(new AppError('email field is required!', 400));
+        return next(new AppError('email field is required!', 400));
     }
 
     const otp = await otpService.generateOtp();
@@ -304,12 +308,14 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     const user = await User.findById(req.user.id).select('password');
 
     if (!user.correctPassword(user.password, req.body.currentPassword)) {
-        next(new AppError('Your current password is wrong', 401));
+        return next(new AppError('Your current password is wrong', 401));
     }
 
     user.password = req.body.Password;
     user.passwordConformation = req.body.passwordConformation;
     await user.save();
+
+
 
     const { accessToken, refreshToken } = tokenService.generateTokens({
         _id: user._id,
@@ -328,7 +334,80 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
         httpOnly: true,
     });
 
-    res.json({ user, auth: true });
+    res.json({ status:"success",msg:"Password is Updated successfully", auth: true });
+});
+
+exports.updateEmailRequest = catchAsync(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select('password');
+
+    if (!user.correctPassword(user.password, req.body.currentPassword)) {
+        return next(new AppError('password is incorrect', 401));
+    }
+
+    const data = {
+        id: user._id,
+        email: req.body.email,
+        expires: Date.now() + 5 * 60 * 1000,
+    };
+
+    const token = encrypt256cbc(data);
+    const emailVerifyLink = `${process.env.BASE_URL}/api/v${process.env.APP_VERSION}/${token}/email-verify`;
+    const message = `Pleas verify your email by clicking no ${emailVerifyLink}`;
+
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: 'Your password reset token (valid for 10 min)',
+            message,
+        });
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Token sent to email!',
+        });
+    } catch (err) {
+        console.log(err);
+        user.passwordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+        await user.save({ validateBeforeSave: false });
+
+        return next(
+            new AppError(
+                'There was an error sending the email. Try again later!'
+            ),
+            500
+        );
+    }
+});
+
+exports.updateEmailVerify = catchAsync(async (req, res, next) => {
+    const { token } = req.params;
+    const tokenData = decrypt256cbc(token);
+
+    if (tokenData.expires < Date.now()) {
+        return next(new AppError('token has been expired', 400));
+    }
+
+    if (tokenData.id != req.user._id) {
+        return next(new AppError('Unauthorized Access', 401));
+    }
+
+    const user = await handlerFactory.findById(User,tokenData.id);
+
+    if (!user) {
+        return next(
+            new AppError('Something went wrong please try again later', 400)
+        );
+    }
+    user.email = tokenData.email;
+
+    await user.save({ validateBeforeSave: false });
+
+    res.status(202).json({
+        status: 'success',
+        msg: 'email is successfully updated',
+        user,
+    });
 });
 
 exports.logout = catchAsync(async (req, res, next) => {

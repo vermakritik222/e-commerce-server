@@ -8,10 +8,10 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
     const { items, paymentMethod, shippingAddress } = req.body;
 
     if (!items || !paymentMethod || !shippingAddress) {
-        next(new AppError('all fields are requires', 400));
+        return next(new AppError('all fields are requires', 400));
     }
     if (!(items.length > 0)) {
-        next(
+        return next(
             new AppError('items array should contain at least one product', 400)
         );
     }
@@ -22,7 +22,7 @@ exports.placeOrder = catchAsync(async (req, res, next) => {
     });
 
     if (totalAmount <= 0) {
-        next(new AppError('something went wrong', 400));
+        return next(new AppError('something went wrong', 400));
     }
 
     const order = await handlerFactory.createOne(Order, {
