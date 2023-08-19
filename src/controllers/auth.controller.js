@@ -188,7 +188,7 @@ exports.refresh = catchAsync(async (req, res) => {
     }
 
     // check if valid user
-    const user = await handlerFactoryService.find(User, { _id: userData._id });
+    const user = await handlerFactory.find(User, { _id: userData._id });
     if (!user) {
         return next(new AppError('No user', 404));
     }

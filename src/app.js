@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 
 // Middleware
 const universalMiddleware = require('./middleware/universal.middleware');
+const authorizeMiddleware = require('./middleware/authorize.middleware');
 
 // Routes
 const healthCheckRoutes = require('./routes/healthCheck.routes');
@@ -12,6 +13,7 @@ const authRouter = require('./routes/auth.routes');
 const addressRoutes = require('./routes/address.routes');
 const productRoutes = require('./routes/product.routes');
 const reviewRoutes = require('./routes/review.routes.js');
+const cartRoutes = require('./routes/cart.routes');
 
 // Global Error Handler
 const globalErrorHandler = require('./controllers/error.controller');
@@ -33,10 +35,13 @@ app.use(
         origin: ['*', 'http://localhost:3000'],
         credentials: true,
     })
-);
+    );
 
 // custom middleware
 app.use(universalMiddleware.sendTimeStamp);
+
+// health check
+app.use('/health-check', healthCheckRoutes);
 
 // Routes
 app.use('/api/v1', authRouter);
@@ -44,8 +49,9 @@ app.use('/api/v1', addressRoutes);
 app.use('/api/v1', productRoutes);
 app.use('/api/v1', reviewRoutes);
 
-// health check
-app.use('/health-check', healthCheckRoutes);
+app.use(authorizeMiddleware.protect);
+
+app.use('/api/v1/cart', cartRoutes);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
