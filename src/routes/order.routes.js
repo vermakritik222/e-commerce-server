@@ -1,16 +1,21 @@
 const express = require('express');
-const cartControllers = require('../controllers/cart.controller');
+const orderControllers = require('../controllers/order.controllers');
 
 const router = express.Router();
 
 router
     .route('/')
-    .post(cartControllers.addCartItem)
-    .get(cartControllers.getCart)
-    .patch(cartControllers.updateCartItem);
-    
-router.route('/:id').delete(cartControllers.deleteCartItem);
+    .post(orderControllers.placeOrder)
+    // .get(orderControllers.getActiveOrder)
+    // .patch(orderControllers.updateOrder);
 
-router.route('/remove-all').delete(cartControllers.deleteCart);
+// router.route('/:id').get(orderControllers.getOrderDetails);
+
+// router.route('/history').get(orderControllers.getOrderHistory);
+
+// router
+//     .route('/archive/:id')
+//     .patch(orderControllers.archiveOrder)
+//     .get(orderControllers.getArchiveOrderDetails);
 
 module.exports = router;

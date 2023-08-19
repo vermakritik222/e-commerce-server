@@ -14,6 +14,7 @@ const addressRoutes = require('./routes/address.routes');
 const productRoutes = require('./routes/product.routes');
 const reviewRoutes = require('./routes/review.routes.js');
 const cartRoutes = require('./routes/cart.routes');
+const orderRoutes = require('./routes/order.routes');
 
 // Global Error Handler
 const globalErrorHandler = require('./controllers/error.controller');
@@ -52,6 +53,7 @@ app.use('/api/v1', reviewRoutes);
 app.use(authorizeMiddleware.protect);
 
 app.use('/api/v1/cart', cartRoutes);
+app.use('/api/v1/order', orderRoutes);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
