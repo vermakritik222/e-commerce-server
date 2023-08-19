@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === 'development') {
         '<PASSWORD>',
         process.env.DEV_DATABASE_PASSWORD
     );
+    console.log(DB)
 }
 if (process.env.NODE_ENV === 'production') {
     DB = process.env.DATABASE.replace(
