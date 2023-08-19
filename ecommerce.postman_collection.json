@@ -538,43 +538,6 @@
 			]
 		},
 		{
-			"name": "Reviews",
-			"item": [
-				{
-					"name": "New Request",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"review\":\"test\",\r\n    \"rating\":\"1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:80/api/v1/product/64dffbc1aa0ca55da88e9e9e/review",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "80",
-							"path": [
-								"api",
-								"v1",
-								"product",
-								"64dffbc1aa0ca55da88e9e9e",
-								"review"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Cart Management",
 			"item": [
 				{

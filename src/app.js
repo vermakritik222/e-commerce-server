@@ -12,7 +12,6 @@ const healthCheckRoutes = require('./routes/healthCheck.routes');
 const authRouter = require('./routes/auth.routes');
 const addressRoutes = require('./routes/address.routes');
 const productRoutes = require('./routes/product.routes');
-const reviewRoutes = require('./routes/review.routes.js');
 const cartRoutes = require('./routes/cart.routes');
 const orderRoutes = require('./routes/order.routes');
 
@@ -48,7 +47,6 @@ app.use('/health-check', healthCheckRoutes);
 app.use('/api/v1', authRouter);
 app.use('/api/v1', addressRoutes);
 app.use('/api/v1', productRoutes);
-app.use('/api/v1', reviewRoutes);
 
 app.use(authorizeMiddleware.protect);
 
