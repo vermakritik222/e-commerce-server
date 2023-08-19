@@ -40,6 +40,7 @@ exports.deleteOne = async (Model, id) => {
     const doc = await Model.findByIdAndDelete(id);
     return doc;
 };
+
 exports.deleteMany = async (Model, query) => {
     const doc = await Model.deleteMany(query);
     return doc;

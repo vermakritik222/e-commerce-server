@@ -351,7 +351,7 @@ exports.updateEmailRequest = catchAsync(async (req, res, next) => {
     };
 
     const token = encrypt256cbc(data);
-    const emailVerifyLink = `${process.env.BASE_URL}/api/v${process.env.APP_VERSION}/${token}/email-verify`;
+    const emailVerifyLink = `${process.env.BASE_URL}/api/v${process.env.APP_VERSION}/email-verify/${token}`;
     const message = `Pleas verify your email by clicking no ${emailVerifyLink}`;
 
     try {

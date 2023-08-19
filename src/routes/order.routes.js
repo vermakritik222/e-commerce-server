@@ -11,9 +11,4 @@ router
 
 router.route('/:id').get(orderControllers.getOrderDetails);
 
-// router
-//     .route('/archive/:id')
-//     .patch(orderControllers.archiveOrder)
-//     .get(orderControllers.getArchiveOrderDetails);
-
 module.exports = router;

@@ -16,7 +16,7 @@ router.use(authorizeMiddleware.protect);
 
 router.get('/logout', authController.logout);
 router.patch('/update-email', authController.updateEmailRequest);
-router.get('/:token/email-verify', authController.updateEmailVerify);
+router.get('/email-verify/:token', authController.updateEmailVerify);
 router.patch('/update-password', authController.updatePassword);
 
 module.exports = router;
