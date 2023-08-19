@@ -622,7 +622,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Port",
+					"name": "Get Cart",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -689,6 +689,28 @@
 								"v1",
 								"cart",
 								"64e092bf354c071ffbf75c1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete whole cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/v1/cart/remove-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"remove-all"
 							]
 						}
 					},
