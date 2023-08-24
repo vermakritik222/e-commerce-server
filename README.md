@@ -88,4 +88,8 @@ PATCH "/order"
 GET "/order/:id"
 ```
 ---
-
+## How To run 
+install Docker Desktop
+```
+docker-compose up
+```
