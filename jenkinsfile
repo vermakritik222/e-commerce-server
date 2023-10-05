@@ -1,0 +1,71 @@
+pipeline {
+    agent any
+
+    environment {
+        SCANNER_HOME = tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+    }
+
+    parameters {
+        string(name: 'Branch_Name', defaultValue: 'master', description: 'Git branch containing Jenkinsfile code')
+        string(name: 'Image_Name', defaultValue: 'manage_contact_app', description: 'Docker image name to build')
+        string(name: 'Image_Tag', defaultValue: 'latest', description: 'Docker image tag')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: params.Branch_Name]], userRemoteConfigs: [[url: 'https://github.com/vermakritik222/e-commerce-server.git']]])
+                }
+            }
+        }
+
+        stage('Sonar Analysis') {
+            steps {
+                sh script: "${SCANNER_HOME}/bin/sonar-scanner", returnStatus: true
+            }
+        }
+
+        stage('OWASP Dependency Check') {
+            steps {
+                script {
+                    def dependencyCheckArgs = [
+                        additionalArguments: '--scan ./',
+                        odcInstallation: 'DP',
+                        dependencyCheckPublisher: [[pattern: '**/dependency-check-report.xml']]
+                    ]
+                    dependencyCheck(dependencyCheckArgs)
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                script {
+                    def dockerfile = 'Dockerfile'
+                    def imageName = "${params.Image_Name}:${params.Image_Tag}"
+                    def buildArgs = "-f ${dockerfile} ."
+                    docker.build(imageName, buildArgs)
+                }
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                script {
+                    def imageName = "${params.Image_Name}:${params.Image_Tag}"
+                    sh "trivy image ${imageName}"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'All stages succeeded'
+        }
+        failure {
+            echo 'One or more stages failed'
+        }
+    }
+}
